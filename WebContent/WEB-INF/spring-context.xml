@@ -21,7 +21,6 @@
 	  <mvc:resources mapping="/js/**" location="/WEB-INF/js/" cache-period="31556926"/>
 	<mvc:annotation-driven />
  
-	
 	<mvc:interceptors>
 		<bean class="br.com.impacta.interceptor.AtorizadorInterceptor"/>
 	</mvc:interceptors>
