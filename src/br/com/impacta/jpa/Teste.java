@@ -1,21 +1,40 @@
 package br.com.impacta.jpa;
 
-import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
-import br.com.impacta.dao.AtendenteDAO;
-import br.com.impacta.model.Atendente;
+import br.com.impacta.dao.LivroDAO;
+import br.com.impacta.model.Livro;
 
 public class Teste {
 
 	public static void main(String[] args) {
-		Atendente p = new Atendente();
-		p.setUsuario("78yu9887878787878787uiuiuiiuui");		
-		p.setSenha("aletradodenovao");
-		AtendenteDAO dao = new AtendenteDAO();
+		Livro l = new Livro();
 		
-		List<Atendente> lista = new ArrayList<Atendente>();		
-		System.out.println(dao.existeUsuario(p));
+		//l.setTitulo("tituloalterado");
+		//l.setCategoria("categoriaalterado");
+		
+		//Calendar calendar = Calendar.getInstance();
+		//calendar.set(10, 28, 2018);		
+		//l.setAnoPublicacao(calendar);
+		//l.setTipoPublicacao("tipoPublicacaoalterado");
+		l.setIsbn("alterado");
+		//l.setAutor("moisesalterado");
+		//l.setEdicao("01alterado");
+		//l.setEditora("saraivaalterado");
+		
+		LivroDAO dao = new LivroDAO();
+		//dao.cadastrar(l);
+		//l.setId(1);
+		//dao.alterar(l);
+		//List<Livro> livros = dao.listar();
+		//for (Livro livro : livros) {
+			//   System.out.println("Titulo: " + livro.getTitulo());
+			//   System.out.println("Titulo: " + livro.getIsbn());
+		//}
+		dao.remover(l);
+
+		
 		
 	}
 
