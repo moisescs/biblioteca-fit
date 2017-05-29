@@ -4,15 +4,18 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import br.com.impacta.dao.AtendenteDAO;
+import br.com.impacta.model.Atendente;
+
 @Controller
 public class LoginController {
 
-	@RequestMapping("")
+	@RequestMapping("loginForm")
 	public String loginForm(){
 		return "formulario-login";
 	}
 
-	/*
+	
 	@RequestMapping("efetuarLogin")
 	public String efetuarLogin(Atendente atendente, HttpSession session){
 		if(new AtendenteDAO().existeUsuario(atendente)){
@@ -21,7 +24,7 @@ public class LoginController {
 		} 
 		return "redirect:loginForm";
 	}
-	*/
+	
 
 	@RequestMapping("logout")
 	public String logout(HttpSession session){
@@ -31,7 +34,17 @@ public class LoginController {
 	
 	@RequestMapping("index")
 	public String teste(){
-		return "index";		
+		return "/index";		
+	}
+	
+	@RequestMapping("acervo")
+	public String acervo(){
+		return "acervo";
+	}
+	
+	@RequestMapping("pessoa")
+	public String pessoa(){
+		return "pessoa";
 	}
 	
 	@RequestMapping("cad-exemplar")
