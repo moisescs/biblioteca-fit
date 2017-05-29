@@ -1,94 +1,37 @@
 package br.com.impacta.dao;
 
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.Calendar;
 import java.util.List;
-
 import br.com.impacta.model.Revista;
 
-public class RevistaDAO extends ExemplarDAO{
+public class RevistaDAO extends AcervoDAO{
+	
 	public void cadastrar(Revista r){
-		String sql = "";
-		try {
-			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setString(1,r.getTitulo());
-			stmt.setString(2,r.getCategoria());
-			stmt.setString(3,r.getEdicao());
-			stmt.setString(4,r.getEditora());
-			stmt.setString(4,r.getTipoPublicacao());
-			stmt.setDate(5,new Date(r.getAnoPublicacao().getInstance().getTimeInMillis()));
-			
-			stmt.execute();
-			conn.close();
-			stmt.close();
-			System.out.println("Revista Cadastrada com sucesso!");
-			
-		} catch (Exception e) {
-			throw new RuntimeException();
-		}
-	}
-
-	public void alterar(Revista r){
-		String sql = "";
-		try {
-			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setString(1,r.getTitulo());
-			stmt.setString(2,r.getCategoria());
-			stmt.setString(3,r.getEdicao());
-			stmt.setString(4,r.getEditora());
-			stmt.setString(4,r.getTipoPublicacao());
-			stmt.setDate(5,new Date(r.getAnoPublicacao().getInstance().getTimeInMillis()));
-			stmt.setLong(6, r.getId());
-			
-			stmt.execute();
-			conn.close();
-			stmt.close();
-			System.out.println("Revista alterada com sucesso!");
-		} catch (Exception e) {
-			throw new RuntimeException();
-		}	
+		getManager().getTransaction().begin();
+		getManager().persist(r);
+		getManager().getTransaction().commit();
+		getManager().close();
 	}
 	
-	public Revista consultaPorId(){
-		String sql = "";
-		try {
-			PreparedStatement stmt = conn.prepareStatement(sql);
-			ResultSet rs = stmt.executeQuery();
-			Revista revista = new Revista();
-			
-			revista.setTitulo(rs.getString(""));
-			revista.setCategoria(rs.getString(""));
-			revista.setEditora(rs.getString(""));
-			revista.setEdicao(rs.getString(""));
-			revista.setTipoPublicacao(rs.getString(""));
-			
-			Calendar data = Calendar.getInstance();
-			data.setTime(rs.getDate(""));			
-			revista.setAnoPublicacao(data);
-			
-			stmt.execute();
-			stmt.close();
-			rs.close();
-			conn.close();			
-			return revista;
-		} catch (Exception e) {
-			throw new RuntimeException();
-		}				
+	public void remover(Revista r){	
+		Revista revista = getManager().find(Revista.class, r.getIdRevista());
+		getManager().getTransaction().begin();
+		getManager().remove(revista);
+		getManager().getTransaction().commit();
+		getManager().close();
+	}
+	public void alterar(Revista r){		
+		getManager().getTransaction().begin();
+		getManager().merge(r);
+		getManager().getTransaction().commit();	
+	}
+	
+	public Revista buscarPorId(Revista r){
+		Revista revista = getManager().find(Revista.class, r.getIdRevista());		 
+		return revista;
 	}
 	
 	public List<Revista> listar(){
-		String sql = "";
-		
-		try {
-			
-			
-		} catch (Exception e) {
-			throw new RuntimeException();
-		}
-		
-		return null;
-		
+		List<Revista> lista = getManager().createQuery("select r from revista as r").getResultList();		
+		return lista;		
 	}
 }

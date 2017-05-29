@@ -1,12 +1,18 @@
 package br.com.impacta.model;
 
-public class Livro extends Exemplar {
-	
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Livro")
+public class Livro extends Acervo {
+	@Column(name = "isbn", unique = true, nullable = false)
+	private String isbn;
 	private String autor;
 	private String edicao;
-	private String isbn;
 	private String editora;
-	
+
 	public String getAutor() {
 		return autor;
 	}

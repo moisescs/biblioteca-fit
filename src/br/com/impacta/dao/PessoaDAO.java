@@ -1,14 +1,11 @@
 package br.com.impacta.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import br.com.impacta.factory.MyEntityManagerFactory;
-import br.com.impacta.model.Atendente;
-import br.com.impacta.model.Funcionario;
 import br.com.impacta.model.Pessoa;
 
 public abstract class PessoaDAO {
@@ -20,10 +17,7 @@ public abstract class PessoaDAO {
 	
 	public EntityManager getManager() {
 		return manager;
-	}
-	
-	
-	 
+	}	 
 	
 	public boolean existeUsuario(Pessoa pessoa){
 				
