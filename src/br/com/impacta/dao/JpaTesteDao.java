@@ -2,7 +2,6 @@ package br.com.impacta.dao;
 
 import javax.persistence.EntityManager;
 
-import br.com.impacta.factory.MyEntityManagerFactory;
 import br.com.impacta.model.Funcionario;
 import br.com.impacta.model.Pessoa;
 
@@ -36,10 +35,10 @@ public class JpaTesteDao {
 
 	    public void adiciona(Pessoa p) {	
 			
-	    	EntityManager e = new MyEntityManagerFactory().getEntityManagerFactory();	    	
-			e.getTransaction().begin();
-			e.persist(p);
-			e.getTransaction().commit();
+	    	//EntityManager e = new MyEntityManagerFactory().getEntityManagerFactory();	    	
+			//e.getTransaction().begin();
+			//e.persist(p);
+			//e.getTransaction().commit();
 	    }
 	    
 	

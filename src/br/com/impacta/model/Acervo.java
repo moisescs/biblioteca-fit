@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="Acervo")
@@ -18,6 +20,7 @@ public abstract class Acervo {
 	private long idAcervo;
 	private String titulo;
 	private String categoria;
+	@Temporal(TemporalType.DATE)
 	private Calendar anoPublicacao;
 	private String tipoPublicacao;
 	

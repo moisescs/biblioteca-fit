@@ -2,24 +2,22 @@ package br.com.impacta.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="Revista")
 public class Revista extends Acervo {
-	@Column(name = "idRevista", unique = true, nullable = false)
-	@GeneratedValue
-	private long idRevista;
+	@Column(name = "codigoRevista", unique = true, nullable = false)
+	private String codigoRevista;
 	private String edicao;
 	private String editora;
 	
-		
-	public long getIdRevista() {
-		return idRevista;
+	
+	public String getCodigoRevista() {
+		return codigoRevista;
 	}
-	public void setIdRevista(long idRevista) {
-		this.idRevista = idRevista;
+	public void setCodigoRevista(String codigoRevista) {
+		this.codigoRevista = codigoRevista;
 	}
 	public String getEdicao() {
 		return edicao;

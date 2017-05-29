@@ -24,4 +24,5 @@
 	<mvc:interceptors>
 		<bean class="br.com.impacta.interceptor.AtorizadorInterceptor"/>
 	</mvc:interceptors>
+
 </beans>

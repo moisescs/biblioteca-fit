@@ -26,22 +26,29 @@ public class LivroDAO extends AcervoDAO{
 		getManager().remove(livro);
 		getManager().getTransaction().commit();
 		getManager().close();
+		getFactory().close();
 	}
 	public void alterar(Livro l){		
 		getManager().getTransaction().begin();
 		getManager().merge(l);
 		getManager().getTransaction().commit();	
+		getManager().close();
+		getFactory().close();
 	}
 	
 	public List<Livro> buscarPorIsbn(Livro l){
 		Query query = this.getManager().createQuery("select l from Livro as l where isbn = :isbn");
 		query.setParameter("isbn", l.getIsbn());
-		List<Livro> livros = query.getResultList();		 
+		List<Livro> livros = query.getResultList();	
+		getManager().close();
+		getFactory().close();
 		return livros;
 	}
 	
 	public List<Livro> listar(){
-		List<Livro> lista = getManager().createQuery("select l from Livro as l").getResultList();		
+		List<Livro> lista = getManager().createQuery("select l from Livro as l").getResultList();	
+		getManager().close();
+		getFactory().close();
 		return lista;		
 	}
 
